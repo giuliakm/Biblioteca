@@ -13,10 +13,12 @@ namespace Biblioteca.Modelos
         [Key]
         public int IdAutor { get; set; }
 
-        public String Nombre { get; set; }
+        public string Nombre { get; set; }
 
-        public String Apellido { get; set; }
+        public string Apellido { get; set; }
         
-        public String Nacionalidad { get; set; }
+        public string Nacionalidad { get; set; }
+
+        
     }
 }
