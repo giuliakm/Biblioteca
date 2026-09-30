@@ -1,19 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Biblioteca.Modelos
 {
+    [Table("editorial")]
     internal class Editorial
     {
         [Key]
+        [Column("id_editorial")]
         public int IdEditorial { get; set; }
 
-        public string NOmbre { get; set; }
+        [Column("nombre")]
+        [MaxLength(50)]
+        [Required]
+        public string Nombre { get; set; }
 
+        [Column("pais")]
+        [MaxLength(50)]
         public string Pais {  get; set; }
     }
 }

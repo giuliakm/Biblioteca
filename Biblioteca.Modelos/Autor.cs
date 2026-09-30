@@ -8,15 +8,25 @@ using System.Threading.Tasks;
 
 namespace Biblioteca.Modelos
 {
+    [Table("autor")]
     public class Autor
     {
         [Key]
+        [Column("id_autor")]
         public int IdAutor { get; set; }
 
+        [Column("nombre")]
+        [MaxLength(50)]
+        [Required]
         public string Nombre { get; set; }
 
+        [Column("apellido")]
+        [MaxLength(50)]
+        [Required]
         public string Apellido { get; set; }
-        
+
+        [Column("nacionalidad")]
+        [MaxLength(50)]
         public string Nacionalidad { get; set; }
 
         
