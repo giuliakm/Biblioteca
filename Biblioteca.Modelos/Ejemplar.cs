@@ -8,5 +8,6 @@ namespace Biblioteca.Modelos
 {
     internal class Ejemplar
     {
+        
     }
 }
