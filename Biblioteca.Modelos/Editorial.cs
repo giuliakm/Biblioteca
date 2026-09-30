@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Biblioteca.Modelos
 {
     [Table("editorial")]
-    internal class Editorial
+    public class Editorial
     {
         [Key]
         [Column("id_editorial")]
@@ -23,5 +23,8 @@ namespace Biblioteca.Modelos
         [Column("pais")]
         [MaxLength(50)]
         public string Pais {  get; set; }
+
+        // Relacion
+        public List<Libro> Libro { get; set; } = new List<Libro>();
     }
 }

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Biblioteca.Modelos
 {
     [Table("ejemplar")]
-    internal class Ejemplar
+    public class Ejemplar
     {
        
         [Column("id_libro")]

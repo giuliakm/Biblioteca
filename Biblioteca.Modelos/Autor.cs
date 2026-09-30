@@ -29,6 +29,10 @@ namespace Biblioteca.Modelos
         [MaxLength(50)]
         public string Nacionalidad { get; set; }
 
+        // Relacion
+
+        public List<Libro> Libro { get; set; } = new List<Libro>();
+
         
     }
 }
