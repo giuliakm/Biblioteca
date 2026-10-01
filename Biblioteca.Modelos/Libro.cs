@@ -12,7 +12,7 @@ namespace Biblioteca.Modelos
     public class Libro
     {
         [Key]
-        [Column("id_libro")]
+        [Column("id_libro", TypeName = "serial")]
         public int IdLibro { get; set; }
 
         [Column("titulo")]
@@ -31,6 +31,9 @@ namespace Biblioteca.Modelos
         [MaxLength(500)]
         public string Descripcion {  get; set; }
 
+        [Column("cantidad")]
+        public int Cantidad { get; set; }
+
         // Llaves Foraneas
         [Column("id_autor")]
         public int IdAutor {  get; set; }
@@ -47,11 +50,5 @@ namespace Biblioteca.Modelos
         public Genero? Genero { get; set; }
 
         public Editorial? Editorial { get; set; }
-
-        // Relacion
-
-        public List<Ejemplar> Ejemplar { get; set; } = new List<Ejemplar>();
-
-
     }
 }

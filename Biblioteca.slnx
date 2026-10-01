@@ -1,3 +1,4 @@
 <Solution>
+  <Project Path="Biblioteca.API/Biblioteca.API.csproj" Id="92e15669-0dc0-4f70-8bff-ad14114cc4ec" />
   <Project Path="Biblioteca.Modelos/Biblioteca.Modelos.csproj" />
 </Solution>
