@@ -1,4 +1,8 @@
+using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("BibliotecaAPIContext") ?? throw new InvalidOperationException("Connection string 'BibliotecaAPIContext' not found.");
+
+builder.Services.AddDbContext<BibliotecaAPIContext>(options => options.UseNpgsql(connectionString));
 
 // Add services to the container.
 
