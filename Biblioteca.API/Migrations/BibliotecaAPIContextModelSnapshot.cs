@@ -50,7 +50,7 @@ namespace Biblioteca.API.Migrations
 
                     b.HasKey("IdAutor");
 
-                    b.ToTable("autor");
+                    b.ToTable("autor", (string)null);
                 });
 
             modelBuilder.Entity("Biblioteca.Modelos.Editorial", b =>
@@ -76,7 +76,7 @@ namespace Biblioteca.API.Migrations
 
                     b.HasKey("IdEditorial");
 
-                    b.ToTable("editorial");
+                    b.ToTable("editorial", (string)null);
                 });
 
             modelBuilder.Entity("Biblioteca.Modelos.Genero", b =>
@@ -96,7 +96,7 @@ namespace Biblioteca.API.Migrations
 
                     b.HasKey("IdGenero");
 
-                    b.ToTable("genero");
+                    b.ToTable("genero", (string)null);
                 });
 
             modelBuilder.Entity("Biblioteca.Modelos.Libro", b =>
@@ -163,7 +163,7 @@ namespace Biblioteca.API.Migrations
 
                     b.HasIndex("GeneroIdGenero");
 
-                    b.ToTable("libro");
+                    b.ToTable("libro", (string)null);
                 });
 
             modelBuilder.Entity("Biblioteca.Modelos.Libro", b =>

@@ -24,9 +24,12 @@
                 <span asp-validation-for="Pais" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Libro" class="control-label"></label>
-                <input asp-for="Libro" class="form-control" />
-                <span asp-validation-for="Libro" class="text-danger"></span>
+                <label asp-for="Libros" class="control-label"></label>
+                <select asp_for="Libros" class="from-control" asp-items="ViewBag.Libros">
+                    <option value="">---- Select Libro ----</option>
+                </select>
+
+                <span asp-validation-for="Libros" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

@@ -2,6 +2,7 @@
 using Biblioteca.Consumer;
 using Biblioteca.Modelos;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 public class EditorialesController : Controller
@@ -24,9 +25,23 @@ public class EditorialesController : Controller
         return View(editorial);
     }
 
+    // Metodo interno para obtener los 
+
+    private List<SelectListItem> GetLibros()
+    {
+        var libros = CRUD<Libro>.GetAll();
+
+        return libros.Select(p => new SelectListItem
+        {
+            Value = p.IdLibro.ToString(),
+            Text = p.Titulo
+        }).ToList();
+    }
+
     // GET: EDITORIALES/Create
     public ActionResult Create()
     {
+        ViewBag.Libros = GetLibros();
         return View();
     }
 
@@ -53,6 +68,7 @@ public class EditorialesController : Controller
     public ActionResult Edit(int id)
     {
         var editorial = CRUD<Editorial>.GetById(id);
+        ViewBag.Libros = GetLibros();
         if (editorial == null)
         {
             return NotFound();

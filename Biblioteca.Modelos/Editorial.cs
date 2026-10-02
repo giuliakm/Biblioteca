@@ -25,6 +25,6 @@ namespace Biblioteca.Modelos
         public string Pais {  get; set; }
 
         // Relacion
-        public List<Libro> Libro { get; set; } = new List<Libro>();
+        public List<Libro> Libros { get; set; } = new List<Libro>();
     }
 }

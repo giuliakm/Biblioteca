@@ -5,7 +5,7 @@ var connectionString = builder.Configuration.GetConnectionString("Postgres") ?? 
 builder.Services.AddDbContext<BibliotecaAPIContext>(options => options.UseNpgsql(connectionString));
 
 // Add services to the container.
-
+AppContext.SetSwitch("npgsql.EnableLegacyTimestampBehavior", true);
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
     {

@@ -76,18 +76,19 @@
                 @Html.DisplayFor(model => item.IdEditorial)
             </td>
             <td>
-                @Html.DisplayFor(model => item.Autor)
+                    @(item.Autor?.Nombre + " " + item.Autor?.Apellido)
             </td>
             <td>
-                @Html.DisplayFor(model => item.Genero)
+                    @item.Genero?.Nombre
             </td>
             <td>
-                @Html.DisplayFor(model => item.Editorial)
+                    @item.Editorial?.Nombre
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.IdLibro">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.IdLibro">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.IdLibro">Delete</a>
+                    <a asp-action="Create" asp-route-id="@item.IdLibro">Create</a>
             </td>
         </tr>
 }

@@ -17,7 +17,7 @@ public class AutoresController : ControllerBase
     public async Task<ActionResult<IEnumerable<Autor>>> GetAutor()
     {
         var autores = await _context.Autores
-            .Include(g => g.Libro)
+            .Include(g => g.Libros)
             .ToListAsync();
 
         return autores;
@@ -28,7 +28,7 @@ public class AutoresController : ControllerBase
     public async Task<ActionResult<Autor>> GetAutor(int idautor)
     {
         var autor = await _context.Autores.
-            Include(g => g.Libro).
+            Include(g => g.Libros).
             FirstOrDefaultAsync(a => a.IdAutor == idautor);
 
 

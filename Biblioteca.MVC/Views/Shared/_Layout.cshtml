@@ -1,61 +1,190 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Biblioteca.MVC</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/Biblioteca.MVC.styles.css" asp-append-version="true" />
-</head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Biblioteca.MVC</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Autores" asp-action="Index">Autores</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Editoriales" asp-action="Index">Editoriales</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Generos" asp-action="Index">Generos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Libros" asp-action="Index">Libros</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2026 - Biblioteca.MVC - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <title>@ViewData["Title"] - Biblioteca</title>
+
+    <link rel="stylesheet" href="~/css/site.css" />
+
+    <style>
+            * {
+                box-sizing: border-box;
+            }
+
+            body {
+                margin: 0;
+                font-family: Arial, sans-serif;
+                background-color: #f5f7fb;
+                color: #1e293b;
+            }
+
+            /* BARRA DE NAVEGACIÓN */
+
+            .navbar {
+                background-color: #0f172a;
+                padding: 18px 50px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .logo {
+                color: white;
+                font-size: 24px;
+                font-weight: bold;
+                text-decoration: none;
+            }
+
+            .menu {
+                display: flex;
+                gap: 25px;
+            }
+
+            .menu a {
+                color: #cbd5e1;
+                text-decoration: none;
+                font-size: 16px;
+                transition: 0.3s;
+            }
+
+            .menu a:hover {
+                color: white;
+            }
+
+            /* CONTENIDO */
+
+            .container {
+                max-width: 1200px;
+                margin: 40px auto;
+                padding: 0 20px;
+            }
+
+            /* BOTONES */
+
+            .btn {
+                display: inline-block;
+                padding: 10px 18px;
+                border-radius: 8px;
+                text-decoration: none;
+                border: none;
+                cursor: pointer;
+                font-size: 14px;
+            }
+
+            .btn-primary {
+                background-color: #2563eb;
+                color: white;
+            }
+
+            .btn-primary:hover {
+                background-color: #1d4ed8;
+            }
+
+            /* TARJETAS */
+
+            .cards {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 25px;
+                margin-top: 30px;
+            }
+
+            .card {
+                background-color: white;
+                border-radius: 15px;
+                padding: 25px;
+                box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+                transition: 0.3s;
+            }
+
+            .card:hover {
+                transform: translateY(-5px);
+            }
+
+            .card-icon {
+                font-size: 45px;
+                margin-bottom: 15px;
+            }
+
+            .card h3 {
+                margin-top: 0;
+            }
+
+            /* TABLAS */
+
+            .table-container {
+                background-color: white;
+                border-radius: 15px;
+                padding: 25px;
+                box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+                overflow-x: auto;
+            }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+
+            th {
+                background-color: #0f172a;
+                color: white;
+                padding: 14px;
+                text-align: left;
+            }
+
+            td {
+                padding: 14px;
+                border-bottom: 1px solid #e2e8f0;
+            }
+
+            tr:hover {
+                background-color: #f8fafc;
+            }
+
+            /* FOOTER */
+
+            footer {
+                margin-top: 60px;
+                background-color: #0f172a;
+                color: #cbd5e1;
+                text-align: center;
+                padding: 25px;
+            }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <a class="logo" asp-controller="Home" asp-action="Index">
+            📚 Biblioteca
+        </a>
+
+        <div class="menu">
+            <a asp-controller="Home" asp-action="Index">Inicio</a>
+            <a asp-controller="Libros" asp-action="Index">Libros</a>
+            <a asp-controller="Autores" asp-action="Index">Autores</a>
+            <a asp-controller="Generos" asp-action="Index">Géneros</a>
+            <a asp-controller="Editoriales" asp-action="Index">Editoriales</a>
         </div>
+
+    </nav>
+
+    <main class="container">
+
+        @RenderBody()
+
+    </main>
+
+    <footer>
+        <p>📚 Sistema de Gestión de Biblioteca</p>
+        <p>Proyecto académico - 2026</p>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+
     @await RenderSectionAsync("Scripts", required: false)
+
 </body>
 </html>

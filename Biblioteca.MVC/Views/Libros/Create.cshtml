@@ -63,19 +63,25 @@
 
             <div class="form-group">
                 <label asp-for="Autor" class="control-label"></label>
-                <input asp-for="Autor" class="form-control" />
+                <select asp_for="Autor" class="from-control" asp-items="ViewBag.Autores">
+                    <option value="">---- Select Autor ----</option>
+                </select>
                 <span asp-validation-for="Autor" class="text-danger"></span>
             </div>
 
             <div class="form-group">
                 <label asp-for="Genero" class="control-label"></label>
-                <input asp-for="Genero" class="form-control" />
+                <select asp_for="Genero" class="from-control" asp-items="ViewBag.Generos">
+                    <option value="">---- Select Generos ----</option>
+                </select>
                 <span asp-validation-for="Genero" class="text-danger"></span>
             </div>
 
             <div class="form-group">
                 <label asp-for="Editorial" class="control-label"></label>
-                <input asp-for="Editorial" class="form-control" />
+                <select asp_for="Editorial" class="from-control" asp-items="ViewBag.Editoriales">
+                    <option value="">---- Select Editoriales ----</option>
+                </select>
                 <span asp-validation-for="Editorial" class="text-danger"></span>
             </div>
             <div class="form-group">

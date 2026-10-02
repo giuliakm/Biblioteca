@@ -19,7 +19,7 @@
                 @Html.DisplayNameFor(model => model.Pais)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Libro)
+                @Html.DisplayNameFor(model => model.Libros)
             </th>
             <th></th>
         </tr>
@@ -34,12 +34,18 @@
                 @Html.DisplayFor(model => item.Pais)
             </td>
             <td>
-                @Html.DisplayFor(model => item.Libro)
+                    
+                    @foreach (var libro in item.Libros)
+                    {
+                        @libro.Titulo
+                        <br />
+                    }
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.IdEditorial">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.IdEditorial">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.IdEditorial">Delete</a>
+                    <a asp-action="Create" asp-route-id="@item.IdEditorial">Create</a>
             </td>
         </tr>
 }

@@ -17,7 +17,7 @@ public class EditorialesController : ControllerBase
     public async Task<ActionResult<IEnumerable<Editorial>>> GetEditorial()
     {
         var editoriales = await _context.Editoriales
-            .Include(g => g.Libro)
+            .Include(g => g.Libros)
             .ToListAsync();
 
         return editoriales;
@@ -28,7 +28,7 @@ public class EditorialesController : ControllerBase
     public async Task<ActionResult<Editorial>> GetEditorial(int ideditorial)
     {
         var editorial = await _context.Editoriales
-            .Include(g => g.Libro).
+            .Include(g => g.Libros).
             FirstOrDefaultAsync(a => a.IdEditorial == ideditorial);
 
         if (editorial == null)

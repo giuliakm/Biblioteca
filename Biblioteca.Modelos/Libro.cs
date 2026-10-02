@@ -36,7 +36,7 @@ namespace Biblioteca.Modelos
 
         // Llaves Foraneas
         [Column("id_autor")]
-        public int IdAutor {  get; set; }
+        public int IdAutor { get; set; }
 
         [Column("id_genero")]
         public int IdGenero { get; set; }
@@ -44,11 +44,15 @@ namespace Biblioteca.Modelos
         [Column("id_editorial")]
         public int IdEditorial { get; set; }
 
-        // Objeto de Navegacion
+        // Objetos de Navegacion
+
+        [ForeignKey("IdAutor")]
         public Autor? Autor { get; set; }
 
+        [ForeignKey("IdGenero")]
         public Genero? Genero { get; set; }
 
+        [ForeignKey("IdEditorial")]
         public Editorial? Editorial { get; set; }
     }
 }

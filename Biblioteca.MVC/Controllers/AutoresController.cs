@@ -3,6 +3,7 @@ using Biblioteca.Modelos;
 using Biblioteca.Consumer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 public class AutoresController : Controller
 {
@@ -24,11 +25,26 @@ public class AutoresController : Controller
         return View(autor);
     }
 
+    // Metodo interno para obtener los 
+
+    private List<SelectListItem> GetLibros()
+    {
+        var libros = CRUD<Libro>.GetAll();
+
+        return libros.Select(p => new SelectListItem
+        {
+            Value = p.IdLibro.ToString(),
+            Text = p.Titulo
+        }).ToList();
+    }
     // GET: AUTORES/Create
     public ActionResult Create()
     {
+        ViewBag.Libros = GetLibros();
         return View();
     }
+
+
 
     // POST: AUTORES/Create
     // To protect from overposting attacks, enable the specific properties you want to bind to.
@@ -53,6 +69,7 @@ public class AutoresController : Controller
     public ActionResult Edit(int id)
     {
         var autor = CRUD<Autor>.GetById(id);
+        ViewBag.Libros = GetLibros();
         if (autor == null)
         {
             return NotFound();

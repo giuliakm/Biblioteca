@@ -7,32 +7,34 @@ using Biblioteca.Modelos;
 public class LibrosController : ControllerBase
 {
     private readonly BibliotecaAPIContext _context;
+
     public LibrosController(BibliotecaAPIContext context)
     {
         _context = context;
     }
 
-    // GET: api/Libro
+    // GET: api/Libros
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Libro>>> GetLibro()
+    public async Task<ActionResult<IEnumerable<Libro>>> GetLibros()
     {
-        var libros = await _context.Libros.
-            Include(a => a.Autor).
-            Include(e => e.Editorial).
-            Include(g => g.Genero).
-            ToListAsync();
-        return libros;
+        var libros = await _context.Libros
+            .Include(l => l.Autor)
+            .Include(l => l.Genero)
+            .Include(l => l.Editorial)
+            .ToListAsync();
+
+        return Ok(libros);
     }
 
-    // GET: api/Libro/5
-    [HttpGet("{idlibro}")]
-    public async Task<ActionResult<Libro>> GetLibro(int idlibro)
+    // GET: api/Libros/5
+    [HttpGet("{id}")]
+    public async Task<ActionResult<Libro>> GetLibro(int id)
     {
-        var libro = await _context.Libros.
-            Include(a => a.Autor).
-            Include(e => e.Editorial).
-            Include(g => g.Genero).
-            FirstOrDefaultAsync(c => c.IdLibro == idlibro);
+        var libro = await _context.Libros
+            .Include(l => l.Autor)
+            .Include(l => l.Genero)
+            .Include(l => l.Editorial)
+            .FirstOrDefaultAsync(l => l.IdLibro == id);
 
         if (libro == null)
         {
@@ -42,12 +44,11 @@ public class LibrosController : ControllerBase
         return libro;
     }
 
-    // PUT: api/Libro/5
-    // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-    [HttpPut("{idlibro}")]
-    public async Task<IActionResult> PutLibro(int? idlibro, Libro libro)
+    // PUT: api/Libros/5
+    [HttpPut("{id}")]
+    public async Task<IActionResult> PutLibro(int id, Libro libro)
     {
-        if (idlibro != libro.IdLibro)
+        if (id != libro.IdLibro)
         {
             return BadRequest();
         }
@@ -60,35 +61,37 @@ public class LibrosController : ControllerBase
         }
         catch (DbUpdateConcurrencyException)
         {
-            if (!LibroExists(idlibro))
+            if (!LibroExists(id))
             {
                 return NotFound();
             }
-            else
-            {
-                throw;
-            }
+
+            throw;
         }
 
         return NoContent();
     }
 
-    // POST: api/Libro
-    // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+    // POST: api/Libros
     [HttpPost]
     public async Task<ActionResult<Libro>> PostLibro(Libro libro)
     {
         _context.Libros.Add(libro);
         await _context.SaveChangesAsync();
 
-        return CreatedAtAction("GetLibro", new { idlibro = libro.IdLibro }, libro);
+        return CreatedAtAction(
+            "GetLibro",
+            new { id = libro.IdLibro },
+            libro
+        );
     }
 
-    // DELETE: api/Libro/5
-    [HttpDelete("{idlibro}")]
-    public async Task<IActionResult> DeleteLibro(int? idlibro)
+    // DELETE: api/Libros/5
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteLibro(int id)
     {
-        var libro = await _context.Libros.FindAsync(idlibro);
+        var libro = await _context.Libros.FindAsync(id);
+
         if (libro == null)
         {
             return NotFound();
@@ -100,8 +103,8 @@ public class LibrosController : ControllerBase
         return NoContent();
     }
 
-    private bool LibroExists(int? idlibro)
+    private bool LibroExists(int id)
     {
-        return _context.Libros.Any(e => e.IdLibro == idlibro);
+        return _context.Libros.Any(e => e.IdLibro == id);
     }
 }

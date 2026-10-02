@@ -7,6 +7,7 @@ using Biblioteca.Modelos;
 public class GenerosController : ControllerBase
 {
     private readonly BibliotecaAPIContext _context;
+
     public GenerosController(BibliotecaAPIContext context)
     {
         _context = context;
@@ -17,19 +18,20 @@ public class GenerosController : ControllerBase
     public async Task<ActionResult<IEnumerable<Genero>>> GetGenero()
     {
         var generos = await _context.Generos
-            .Include(g => g.Libro)
+            .Include(g => g.Libros)
             .ToListAsync();
 
         return generos;
     }
 
-    // GET: api/Genero/5
-    [HttpGet("{idgenero}")]
-    public async Task<ActionResult<Genero>> GetGenero(int idgenero)
+    // GET: api/Generos/5
+    [HttpGet("{id}")]
+    public async Task<ActionResult<Genero>> GetGenero(int id)
     {
         var genero = await _context.Generos
-            .Include(g => g.Libro).
-            FirstOrDefaultAsync(a => a.IdGenero == idgenero);
+            .Include(g => g.Libros)
+            .FirstOrDefaultAsync(g => g.IdGenero == id);
+
         if (genero == null)
         {
             return NotFound();
@@ -38,12 +40,11 @@ public class GenerosController : ControllerBase
         return genero;
     }
 
-    // PUT: api/Genero/5
-    // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-    [HttpPut("{idgenero}")]
-    public async Task<IActionResult> PutGenero(int? idgenero, Genero genero)
+    // PUT: api/Generos/5
+    [HttpPut("{id}")]
+    public async Task<IActionResult> PutGenero(int id, Genero genero)
     {
-        if (idgenero != genero.IdGenero)
+        if (id != genero.IdGenero)
         {
             return BadRequest();
         }
@@ -56,7 +57,7 @@ public class GenerosController : ControllerBase
         }
         catch (DbUpdateConcurrencyException)
         {
-            if (!GeneroExists(idgenero))
+            if (!GeneroExists(id))
             {
                 return NotFound();
             }
@@ -69,22 +70,26 @@ public class GenerosController : ControllerBase
         return NoContent();
     }
 
-    // POST: api/Genero
-    // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+    // POST: api/Generos
     [HttpPost]
     public async Task<ActionResult<Genero>> PostGenero(Genero genero)
     {
         _context.Generos.Add(genero);
         await _context.SaveChangesAsync();
 
-        return CreatedAtAction("GetGenero", new { idgenero = genero.IdGenero }, genero);
+        return CreatedAtAction(
+            "GetGenero",
+            new { id = genero.IdGenero },
+            genero
+        );
     }
 
-    // DELETE: api/Genero/5
-    [HttpDelete("{idgenero}")]
-    public async Task<IActionResult> DeleteGenero(int? idgenero)
+    // DELETE: api/Generos/5
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteGenero(int id)
     {
-        var genero = await _context.Generos.FindAsync(idgenero);
+        var genero = await _context.Generos.FindAsync(id);
+
         if (genero == null)
         {
             return NotFound();
@@ -96,8 +101,8 @@ public class GenerosController : ControllerBase
         return NoContent();
     }
 
-    private bool GeneroExists(int? idgenero)
+    private bool GeneroExists(int id)
     {
-        return _context.Generos.Any(e => e.IdGenero == idgenero);
+        return _context.Generos.Any(e => e.IdGenero == id);
     }
 }
