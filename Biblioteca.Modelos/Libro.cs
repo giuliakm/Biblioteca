@@ -12,7 +12,7 @@ namespace Biblioteca.Modelos
     public class Libro
     {
         [Key]
-        [Column("id_libro", TypeName = "serial")]
+        [Column("id_libro")]
         public int IdLibro { get; set; }
 
         [Column("titulo")]

@@ -12,7 +12,7 @@ namespace Biblioteca.Modelos
     public class Editorial
     {
         [Key]
-        [Column("id_editorial", TypeName = "serial")]
+        [Column("id_editorial")]
         public int IdEditorial { get; set; }
 
         [Column("nombre")]

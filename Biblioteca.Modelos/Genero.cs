@@ -12,7 +12,7 @@ namespace Biblioteca.Modelos
     public class Genero
     {
         [Key]
-        [Column("id_genero", TypeName = "serial")]
+        [Column("id_genero")]
         public int IdGenero { get; set; }
 
         [Column("nombre")]
