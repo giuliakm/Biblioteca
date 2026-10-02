@@ -1,8 +1,121 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Inicio";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="hero">
+
+    <div class="hero-text">
+
+        <p class="welcome">BIENVENIDO A</p>
+
+        <h1>📚 Mi Biblioteca</h1>
+
+        <p>
+            Explora nuestro catálogo de libros, conoce a sus autores
+            y descubre diferentes géneros y editoriales.
+        </p>
+
+        <a asp-controller="Libros"
+           asp-action="Index"
+           class="btn btn-primary">
+            Explorar libros
+        </a>
+
+    </div>
+
+    <div class="hero-icon">
+        📖
+    </div>
+
+</div>
+
+
+<div class="section-title">
+
+    <h2>Explora la biblioteca</h2>
+
+    <p>
+        Consulta la información de nuestros libros y sus categorías.
+    </p>
+
+</div>
+
+
+<div class="cards">
+
+    <div class="card">
+
+        <div class="card-icon">📚</div>
+
+        <h3>Libros</h3>
+
+        <p>
+            Consulta nuestro catálogo de libros disponibles.
+        </p>
+
+        <a asp-controller="Libros"
+           asp-action="Index"
+           class="card-link">
+            Ver libros →
+        </a>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="card-icon">✍️</div>
+
+        <h3>Autores</h3>
+
+        <p>
+            Conoce los autores registrados en nuestra biblioteca.
+        </p>
+
+        <a asp-controller="Autores"
+           asp-action="Index"
+           class="card-link">
+            Ver autores →
+        </a>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="card-icon">🏷️</div>
+
+        <h3>Géneros</h3>
+
+        <p>
+            Explora los diferentes géneros literarios.
+        </p>
+
+        <a asp-controller="Generos"
+           asp-action="Index"
+           class="card-link">
+            Ver géneros →
+        </a>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="card-icon">🏢</div>
+
+        <h3>Editoriales</h3>
+
+        <p>
+            Consulta las editoriales de nuestros libros.
+        </p>
+
+        <a asp-controller="Editoriales"
+           asp-action="Index"
+           class="card-link">
+            Ver editoriales →
+        </a>
+
+    </div>
+
 </div>
