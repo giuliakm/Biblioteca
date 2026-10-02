@@ -16,14 +16,21 @@ public class AutoresController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Autor>>> GetAutor()
     {
-        return await _context.Autores.ToListAsync();
+        var autores = await _context.Autores
+            .Include(g => g.Libro)
+            .ToListAsync();
+
+        return autores;
     }
 
     // GET: api/Autor/5
     [HttpGet("{idautor}")]
     public async Task<ActionResult<Autor>> GetAutor(int idautor)
     {
-        var autor = await _context.Autores.FindAsync(idautor);
+        var autor = await _context.Autores.
+            Include(g => g.Libro).
+            FirstOrDefaultAsync(a => a.IdAutor == idautor);
+
 
         if (autor == null)
         {

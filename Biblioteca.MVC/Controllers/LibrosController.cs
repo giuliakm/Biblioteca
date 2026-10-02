@@ -14,9 +14,9 @@ public class LibrosController : Controller
     }
 
     // GET: LIBROS/Details/5
-    public ActionResult Details(int id)
+    public ActionResult Details(int idlibro)
     {
-        var libro = CRUD<Libro>.GetById(id);
+        var libro = CRUD<Libro>.GetById(idlibro);
         if (libro == null)
         {
             return NotFound();
@@ -50,9 +50,9 @@ public class LibrosController : Controller
     }
 
     // GET: LIBROS/Edit/5
-    public ActionResult Edit(int id)
+    public ActionResult Edit(int idlibro)
     {
-        var libro = CRUD<Libro>.GetById(id);
+        var libro = CRUD<Libro>.GetById(idlibro);
         if (libro == null)
         {
             return NotFound();
@@ -65,11 +65,11 @@ public class LibrosController : Controller
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public ActionResult Edit(int id, Libro libro)
+    public ActionResult Edit(int idlibro, Libro libro)
     {
         try
         {
-            CRUD<Libro>.Update(id, libro);
+            CRUD<Libro>.Update(idlibro, libro);
             return RedirectToAction(nameof(Index));
         }
         catch (Exception ex)
@@ -80,9 +80,9 @@ public class LibrosController : Controller
     }
 
     // GET: LIBROS/Delete/5
-    public IActionResult Delete(int id)
+    public IActionResult Delete(int idlibro)
     {
-        var libro = CRUD<Libro>.GetById(id);
+        var libro = CRUD<Libro>.GetById(idlibro);
         if (libro == null)
         {
             return NotFound();
@@ -93,11 +93,11 @@ public class LibrosController : Controller
     // POST: LIBROS/Delete/5
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
-    public IActionResult Delete(int id, Libro libro)
+    public IActionResult Delete(int idlibro, Libro libro)
     {
         try
         {
-            CRUD<Libro>.Delete(id);
+            CRUD<Libro>.Delete(idlibro);
             return RedirectToAction(nameof(Index));
         }
         catch (Exception ex)

@@ -16,14 +16,23 @@ public class LibrosController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Libro>>> GetLibro()
     {
-        return await _context.Libros.ToListAsync();
+        var libros = await _context.Libros.
+            Include(a => a.Autor).
+            Include(e => e.Editorial).
+            Include(g => g.Genero).
+            ToListAsync();
+        return libros;
     }
 
     // GET: api/Libro/5
     [HttpGet("{idlibro}")]
     public async Task<ActionResult<Libro>> GetLibro(int idlibro)
     {
-        var libro = await _context.Libros.FindAsync(idlibro);
+        var libro = await _context.Libros.
+            Include(a => a.Autor).
+            Include(e => e.Editorial).
+            Include(g => g.Genero).
+            FirstOrDefaultAsync(c => c.IdLibro == idlibro);
 
         if (libro == null)
         {

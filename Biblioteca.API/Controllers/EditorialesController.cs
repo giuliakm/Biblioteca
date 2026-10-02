@@ -16,14 +16,20 @@ public class EditorialesController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Editorial>>> GetEditorial()
     {
-        return await _context.Editoriales.ToListAsync();
+        var editoriales = await _context.Editoriales
+            .Include(g => g.Libro)
+            .ToListAsync();
+
+        return editoriales;
     }
 
     // GET: api/Editorial/5
     [HttpGet("{ideditorial}")]
     public async Task<ActionResult<Editorial>> GetEditorial(int ideditorial)
     {
-        var editorial = await _context.Editoriales.FindAsync(ideditorial);
+        var editorial = await _context.Editoriales
+            .Include(g => g.Libro).
+            FirstOrDefaultAsync(a => a.IdEditorial == ideditorial);
 
         if (editorial == null)
         {

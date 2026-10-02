@@ -12,19 +12,24 @@ public class GenerosController : ControllerBase
         _context = context;
     }
 
-    // GET: api/Genero
+    // GET: api/Generos
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Genero>>> GetGenero()
     {
-        return await _context.Generos.ToListAsync();
+        var generos = await _context.Generos
+            .Include(g => g.Libro)
+            .ToListAsync();
+
+        return generos;
     }
 
     // GET: api/Genero/5
     [HttpGet("{idgenero}")]
     public async Task<ActionResult<Genero>> GetGenero(int idgenero)
     {
-        var genero = await _context.Generos.FindAsync(idgenero);
-
+        var genero = await _context.Generos
+            .Include(g => g.Libro).
+            FirstOrDefaultAsync(a => a.IdGenero == idgenero);
         if (genero == null)
         {
             return NotFound();
