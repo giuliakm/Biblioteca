@@ -2,4 +2,5 @@
   <Project Path="Biblioteca.API/Biblioteca.API.csproj" Id="92e15669-0dc0-4f70-8bff-ad14114cc4ec" />
   <Project Path="Biblioteca.Consumer/Biblioteca.Consumer.csproj" Id="82a2c378-59e0-4b84-9bbe-cff38dff85d7" />
   <Project Path="Biblioteca.Modelos/Biblioteca.Modelos.csproj" />
+  <Project Path="Biblioteca.MVC/Biblioteca.MVC.csproj" Id="72b4bc58-31da-4b68-b70f-c789f4d392e2" />
 </Solution>

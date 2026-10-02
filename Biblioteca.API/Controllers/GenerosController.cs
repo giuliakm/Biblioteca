@@ -16,14 +16,14 @@ public class GenerosController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Genero>>> GetGenero()
     {
-        return await _context.Genero.ToListAsync();
+        return await _context.Generos.ToListAsync();
     }
 
     // GET: api/Genero/5
     [HttpGet("{idgenero}")]
     public async Task<ActionResult<Genero>> GetGenero(int idgenero)
     {
-        var genero = await _context.Genero.FindAsync(idgenero);
+        var genero = await _context.Generos.FindAsync(idgenero);
 
         if (genero == null)
         {
@@ -69,7 +69,7 @@ public class GenerosController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<Genero>> PostGenero(Genero genero)
     {
-        _context.Genero.Add(genero);
+        _context.Generos.Add(genero);
         await _context.SaveChangesAsync();
 
         return CreatedAtAction("GetGenero", new { idgenero = genero.IdGenero }, genero);
@@ -79,13 +79,13 @@ public class GenerosController : ControllerBase
     [HttpDelete("{idgenero}")]
     public async Task<IActionResult> DeleteGenero(int? idgenero)
     {
-        var genero = await _context.Genero.FindAsync(idgenero);
+        var genero = await _context.Generos.FindAsync(idgenero);
         if (genero == null)
         {
             return NotFound();
         }
 
-        _context.Genero.Remove(genero);
+        _context.Generos.Remove(genero);
         await _context.SaveChangesAsync();
 
         return NoContent();
@@ -93,6 +93,6 @@ public class GenerosController : ControllerBase
 
     private bool GeneroExists(int? idgenero)
     {
-        return _context.Genero.Any(e => e.IdGenero == idgenero);
+        return _context.Generos.Any(e => e.IdGenero == idgenero);
     }
 }

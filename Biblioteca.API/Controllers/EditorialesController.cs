@@ -16,14 +16,14 @@ public class EditorialesController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Editorial>>> GetEditorial()
     {
-        return await _context.Editorial.ToListAsync();
+        return await _context.Editoriales.ToListAsync();
     }
 
     // GET: api/Editorial/5
     [HttpGet("{ideditorial}")]
     public async Task<ActionResult<Editorial>> GetEditorial(int ideditorial)
     {
-        var editorial = await _context.Editorial.FindAsync(ideditorial);
+        var editorial = await _context.Editoriales.FindAsync(ideditorial);
 
         if (editorial == null)
         {
@@ -69,7 +69,7 @@ public class EditorialesController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<Editorial>> PostEditorial(Editorial editorial)
     {
-        _context.Editorial.Add(editorial);
+        _context.Editoriales.Add(editorial);
         await _context.SaveChangesAsync();
 
         return CreatedAtAction("GetEditorial", new { ideditorial = editorial.IdEditorial }, editorial);
@@ -79,13 +79,13 @@ public class EditorialesController : ControllerBase
     [HttpDelete("{ideditorial}")]
     public async Task<IActionResult> DeleteEditorial(int? ideditorial)
     {
-        var editorial = await _context.Editorial.FindAsync(ideditorial);
+        var editorial = await _context.Editoriales.FindAsync(ideditorial);
         if (editorial == null)
         {
             return NotFound();
         }
 
-        _context.Editorial.Remove(editorial);
+        _context.Editoriales.Remove(editorial);
         await _context.SaveChangesAsync();
 
         return NoContent();
@@ -93,6 +93,6 @@ public class EditorialesController : ControllerBase
 
     private bool EditorialExists(int? ideditorial)
     {
-        return _context.Editorial.Any(e => e.IdEditorial == ideditorial);
+        return _context.Editoriales.Any(e => e.IdEditorial == ideditorial);
     }
 }

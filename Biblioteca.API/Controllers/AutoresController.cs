@@ -16,14 +16,14 @@ public class AutoresController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Autor>>> GetAutor()
     {
-        return await _context.Autor.ToListAsync();
+        return await _context.Autores.ToListAsync();
     }
 
     // GET: api/Autor/5
     [HttpGet("{idautor}")]
     public async Task<ActionResult<Autor>> GetAutor(int idautor)
     {
-        var autor = await _context.Autor.FindAsync(idautor);
+        var autor = await _context.Autores.FindAsync(idautor);
 
         if (autor == null)
         {
@@ -69,7 +69,7 @@ public class AutoresController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<Autor>> PostAutor(Autor autor)
     {
-        _context.Autor.Add(autor);
+        _context.Autores.Add(autor);
         await _context.SaveChangesAsync();
 
         return CreatedAtAction("GetAutor", new { idautor = autor.IdAutor }, autor);
@@ -79,13 +79,13 @@ public class AutoresController : ControllerBase
     [HttpDelete("{idautor}")]
     public async Task<IActionResult> DeleteAutor(int? idautor)
     {
-        var autor = await _context.Autor.FindAsync(idautor);
+        var autor = await _context.Autores.FindAsync(idautor);
         if (autor == null)
         {
             return NotFound();
         }
 
-        _context.Autor.Remove(autor);
+        _context.Autores.Remove(autor);
         await _context.SaveChangesAsync();
 
         return NoContent();
@@ -93,6 +93,6 @@ public class AutoresController : ControllerBase
 
     private bool AutorExists(int? idautor)
     {
-        return _context.Autor.Any(e => e.IdAutor == idautor);
+        return _context.Autores.Any(e => e.IdAutor == idautor);
     }
 }

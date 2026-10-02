@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace ClinicaOdontologica.Consumer
+namespace Biblioteca.Consumer
 {
     public static class CRUD<T>
     {

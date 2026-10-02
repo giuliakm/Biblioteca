@@ -16,14 +16,14 @@ public class LibrosController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Libro>>> GetLibro()
     {
-        return await _context.Libro.ToListAsync();
+        return await _context.Libros.ToListAsync();
     }
 
     // GET: api/Libro/5
     [HttpGet("{idlibro}")]
     public async Task<ActionResult<Libro>> GetLibro(int idlibro)
     {
-        var libro = await _context.Libro.FindAsync(idlibro);
+        var libro = await _context.Libros.FindAsync(idlibro);
 
         if (libro == null)
         {
@@ -69,7 +69,7 @@ public class LibrosController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<Libro>> PostLibro(Libro libro)
     {
-        _context.Libro.Add(libro);
+        _context.Libros.Add(libro);
         await _context.SaveChangesAsync();
 
         return CreatedAtAction("GetLibro", new { idlibro = libro.IdLibro }, libro);
@@ -79,13 +79,13 @@ public class LibrosController : ControllerBase
     [HttpDelete("{idlibro}")]
     public async Task<IActionResult> DeleteLibro(int? idlibro)
     {
-        var libro = await _context.Libro.FindAsync(idlibro);
+        var libro = await _context.Libros.FindAsync(idlibro);
         if (libro == null)
         {
             return NotFound();
         }
 
-        _context.Libro.Remove(libro);
+        _context.Libros.Remove(libro);
         await _context.SaveChangesAsync();
 
         return NoContent();
@@ -93,6 +93,6 @@ public class LibrosController : ControllerBase
 
     private bool LibroExists(int? idlibro)
     {
-        return _context.Libro.Any(e => e.IdLibro == idlibro);
+        return _context.Libros.Any(e => e.IdLibro == idlibro);
     }
 }
